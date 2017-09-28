@@ -1,0 +1,1 @@
+let sum = (numbera,numberb)=>numbera+numberb;
