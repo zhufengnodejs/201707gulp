@@ -14,8 +14,17 @@ let $ = require('gulp-load-plugins')();
 gulp.task('serve',function(){
   $.connect.server({
     port:8080,
-    root:'build'
+    root:'build',
+    livereload:true //启动自动加载
   });
 });
+gulp.task('html',function(){
+  gulp.src('./src/index.html')
+    .pipe(gulp.dest('./build'))
+    .pipe($.connect.reload())//强制浏览器自动刷新
+});
+gulp.task('watch',function(){
+  gulp.watch('./src/index.html',['html']);
+});
 //依赖的任务
-gulp.task('default',['serve']);
+gulp.task('default',['serve','watch']);
