@@ -19,8 +19,10 @@ gulp.task('watch',function(){
 gulp.task('inject',function(){
   //这是将要插入JS和CSS的文件
   let target = gulp.src('./src/index.html');
-  let source = gulp.src(["./build/**/*.js","./build/**/*.css"]);
-  target.pipe($.inject(source)).pipe(gulp.dest('./build'));
+  let source = gulp.src(["build/**/*.js","build/**/*.css"]);
+  target.pipe($.inject(source,{
+    ignorePath:'build/',addRootSlash:false
+  })).pipe(gulp.dest('./build'));
 });
 //依赖的任务
 gulp.task('default',['serve','watch']);
